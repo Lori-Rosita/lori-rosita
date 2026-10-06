@@ -374,6 +374,8 @@ function LiquidGlass({
         </defs>
       </svg>
 
+      <div className="liquid-glass__distortion"></div>
+
       <div className="liquid-glass__content">
         {children}
       </div>

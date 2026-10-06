@@ -98,12 +98,12 @@
   background: rgba(255, 255, 255, 0.10);
 
   backdrop-filter:
-    blur(12px)
+    blur(8px)
     saturate(1.8)
     brightness(1.2);
 
   -webkit-backdrop-filter:
-    blur(12px)
+    blur(8px)
     saturate(1.8)
     brightness(1.2);
 
@@ -190,4 +190,31 @@
   outline: 2px solid #0a84ff;
 
   outline-offset: 2px;
+}
+
+.liquid-glass__distortion {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  border-radius: inherit;
+
+  z-index: 5;
+
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(255, 255, 255, 0.16),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 80% 85%,
+      rgba(255, 255, 255, 0.08),
+      transparent 30%
+    );
+
+  box-shadow:
+    inset 0 2px 8px rgba(255, 255, 255, 0.18),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.08);
 }
