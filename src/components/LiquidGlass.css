@@ -1,0 +1,193 @@
+.liquid-glass {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: inherit;
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background:
+    light-dark(
+      hsl(0 0% 100% / var(--glass-frost, 0)),
+      hsl(0 0% 0% / var(--glass-frost, 0))
+    );
+
+  backdrop-filter:
+    var(--filter-id, url(#liquid-glass-filter))
+    saturate(var(--glass-saturation, 1));
+
+  -webkit-backdrop-filter:
+    var(--filter-id, url(#liquid-glass-filter))
+    saturate(var(--glass-saturation, 1));
+
+  box-shadow:
+    0 0 2px 1px
+      light-dark(
+        color-mix(in oklch, black, transparent 85%),
+        color-mix(in oklch, white, transparent 65%)
+      )
+      inset,
+
+    0 0 10px 4px
+      light-dark(
+        color-mix(in oklch, black, transparent 90%),
+        color-mix(in oklch, white, transparent 85%)
+      )
+      inset,
+
+    0 4px 16px rgba(17, 17, 26, 0.05),
+    0 8px 24px rgba(17, 17, 26, 0.05),
+    0 16px 56px rgba(17, 17, 26, 0.05),
+
+    0 4px 16px rgba(17, 17, 26, 0.05) inset,
+    0 8px 24px rgba(17, 17, 26, 0.05) inset,
+    0 16px 56px rgba(17, 17, 26, 0.05) inset;
+}
+
+
+/* =========================================
+   SVG FILTER
+   ========================================= */
+
+.liquid-glass__filters {
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0;
+
+  z-index: -1;
+}
+
+
+/* =========================================
+   CONTENT
+   ========================================= */
+
+.liquid-glass__content {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.5rem;
+
+  border-radius: inherit;
+
+  position: relative;
+
+  z-index: 10;
+}
+
+
+/* =========================================
+   FALLBACK
+   ========================================= */
+
+.liquid-glass--fallback {
+  background: rgba(255, 255, 255, 0.10);
+
+  backdrop-filter:
+    blur(12px)
+    saturate(1.8)
+    brightness(1.2);
+
+  -webkit-backdrop-filter:
+    blur(12px)
+    saturate(1.8)
+    brightness(1.2);
+
+  border: 1px solid rgba(255, 255, 255, 0.20);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.20),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.10);
+}
+
+
+/* =========================================
+   NO BACKDROP FILTER SUPPORT
+   ========================================= */
+
+@supports not (backdrop-filter: blur(10px)) {
+
+  .liquid-glass--fallback {
+    background: rgba(255, 255, 255, 0.40);
+
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.50),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.30);
+  }
+
+  .liquid-glass--fallback::before {
+    content: '';
+
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    border-radius: inherit;
+
+    z-index: -1;
+  }
+}
+
+
+/* =========================================
+   PREMIUM LIQUID EDGE
+   ========================================= */
+
+.liquid-glass::after {
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: inherit;
+
+  pointer-events: none;
+
+  z-index: 20;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.28),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.08),
+    inset 0 0 18px rgba(255, 255, 255, 0.025);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.07),
+      transparent 22%,
+      transparent 78%,
+      rgba(255, 255, 255, 0.025)
+    );
+
+  opacity: 0.85;
+}
+
+
+/* =========================================
+   FOCUS
+   ========================================= */
+
+.liquid-glass:focus-visible {
+  outline: 2px solid #0a84ff;
+
+  outline-offset: 2px;
+}
